@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111210">
+  <meta name="description" content="Romanlar, hikâyeler ve tamamlanmamış dünyalar.">
+  <title>Satır Arası — Yazılar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+  <header class="topbar">
+    <a class="brand" href="#home" aria-label="Satır Arası ana sayfa"><span class="brand-mark">S.</span><span>SATIR ARASI</span></a>
+    <nav aria-label="Ana navigasyon">
+      <a href="#novels">Romanlar</a>
+      <a href="#about">Hakkında</a>
+    </nav>
+    <button class="menu-button" id="menuButton" aria-label="Menüyü aç">☰</button>
+  </header>
+
+  <main id="app">
+    <section class="hero" id="home">
+      <div class="hero-copy">
+        <p class="eyebrow">KELİMELERİN ARASINDA BİR YER</p>
+        <h1>Her hikâye,<br><em>bir yerden başlar.</em></h1>
+        <p class="hero-text">Henüz tamamlanmamış dünyalar, yarım kalmış cümleler ve zamanla büyüyen hikâyeler.</p>
+        <a class="text-link" href="#novels">Yazılara göz at <span>↗</span></a>
+      </div>
+      <div class="hero-art" aria-label="Soyut, sisli bir manzara">
+        <div class="art-orbit orbit-one"></div><div class="art-orbit orbit-two"></div>
+        <div class="art-sun"></div><div class="art-horizon"></div>
+        <span class="art-caption">FRAGMENTS OF WORLDS / 01</span>
+      </div>
+      <div class="hero-bottom"><span>YAZILAR &amp; ROMANLAR</span><span>01 — ∞</span></div>
+    </section>
+
+
+    <section class="section novels-section" id="novels">
+      <div class="section-heading">
+        <div><p class="eyebrow">KÜTÜPHANE</p><h2>Devam eden hikâyeler</h2></div>
+        <p class="section-note">Parça parça yazılır.<br>Bir araya gelince bir dünya olur.</p>
+      </div>
+      <div class="novel-grid" id="novelGrid"></div>
+    </section>
+
+
+    <section class="section latest-section" id="latest">
+      <div class="section-heading"><div><p class="eyebrow">SON EKLENEN</p><h2>Yeni satırlar</h2></div><a href="#novels" class="text-link">Tüm romanlar ↗</a></div>
+      <div class="latest-list" id="latestList"></div>
+    </section>
+
+
+    <section class="about-section" id="about">
+      <div class="about-inner"><p class="eyebrow">KISA BİR NOT</p><h2>Bu sayfa, hikâyelerin<br>kendilerine ait bir <em>yer bulması</em> için.</h2>
+        <p>Burada romanlar tamamlanmayı beklemeden, yazıldıkları hâlleriyle paylaşılır. Bazı hikâyeler uzun bir yolculuk, bazıları ise yalnızca birkaç satır olabilir.</p>
+        <span class="about-sign">— Yazar</span>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer"><a class="brand" href="#home"><span class="brand-mark">S.</span><span>SATIR ARASI</span></a><span>© <span id="year"></span> — Bütün hikâyeler, kendi zamanında.</span><a href="#home" class="back-top">Yukarı ↑</a></footer>
+
+
+  <div class="reader-overlay" id="readerOverlay" aria-hidden="true">
+    <div class="reader-shell">
+      <header class="reader-top"><button id="closeReader" class="reader-close">← <span>Kitaplığa dön</span></button><span id="readerBookLabel" class="reader-label"></span><div class="reader-tools"><button id="fontMinus" aria-label="Yazıyı küçült">A−</button><button id="fontPlus" aria-label="Yazıyı büyüt">A+</button></div></header>
+      <article class="reader-content"><p class="reader-kicker" id="readerChapterNumber"></p><h1 id="readerTitle"></h1><div class="reader-meta" id="readerMeta"></div><div class="reader-text" id="readerText"></div><div class="reader-navigation"><button id="previousChapter">← Önceki</button><button id="nextChapter">Sonraki →</button></div></article>
+    </div>
+  </div>
+  <script src="generated-content.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
