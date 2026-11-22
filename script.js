@@ -15,6 +15,8 @@ function publishedPostToChapter(post) {
     .filter(Boolean);
   return {
     id: post.id,
+    chapterNumber: Number(post.chapter_number) || 1,
+    sortDate: post.published_date || post.created_at || '',
     title: post.chapter_title || 'Adsız Bölüm',
     date: post.published_date || '',
     excerpt: post.excerpt || '',
@@ -29,7 +31,7 @@ async function loadPublishedContent() {
     const client = window.supabase.createClient(cfg.url, cfg.anonKey);
     const { data, error } = await client
       .from('skaftalia_posts')
-      .select('id, novel_id, novel_title, novel_subtitle, genre, novel_description, accent, chapter_title, chapter_number, published_date, excerpt, body, status')
+      .select('id, novel_id, novel_title, novel_subtitle, genre, novel_description, accent, chapter_title, chapter_number, published_date, created_at, excerpt, body, status')
       .eq('status', 'published')
       .order('chapter_number', { ascending: true });
     if (error) throw error;
@@ -83,7 +85,7 @@ function renderNovels() {
 }
 function renderLatest() {
   const all = SITE_CONTENT.novels.flatMap(novel => novel.chapters.map((chapter, index) => ({novel, chapter, index})))
-    .sort((a, b) => String(b.chapter.date || '').localeCompare(String(a.chapter.date || '')) || Number(b.chapter.id === a.chapter.id ? 0 : 0))
+    .sort((a, b) => String(b.chapter.sortDate || b.chapter.date || '').localeCompare(String(a.chapter.sortDate || a.chapter.date || '')))
     .slice(0, 5);
   if (!all.length) { latestList.innerHTML = '<p class="empty-latest">Henüz bir parça eklenmedi.</p>'; return; }
   latestList.innerHTML = all.map(item => `<button class="latest-item" data-novel="${escapeHTML(item.novel.id)}" data-chapter="${item.index}"><span class="latest-index">${String(item.index + 1).padStart(2, '0')}</span><span class="latest-main"><span class="latest-novel">${escapeHTML(item.novel.title)}</span><strong>${escapeHTML(item.chapter.title)}</strong></span><span class="latest-date">${escapeHTML(item.chapter.date || '')}</span><span class="latest-arrow">↗</span></button>`).join('');
