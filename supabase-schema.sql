@@ -32,3 +32,9 @@ create policy "Writer can update own posts" on public.skaftalia_posts
   for update to authenticated using (auth.uid() = writer_id) with check (auth.uid() = writer_id);
 create policy "Writer can delete own posts" on public.skaftalia_posts
   for delete to authenticated using (auth.uid() = writer_id);
+
+
+-- Table privileges; Row Level Security policies above still control which rows each role can access.
+GRANT USAGE ON SCHEMA public TO anon, authenticated;
+GRANT SELECT ON TABLE public.skaftalia_posts TO anon, authenticated;
+GRANT INSERT, UPDATE, DELETE ON TABLE public.skaftalia_posts TO authenticated;
